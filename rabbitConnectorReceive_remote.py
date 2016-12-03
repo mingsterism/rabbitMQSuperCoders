@@ -1,6 +1,6 @@
 import pika
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(
+connection = pika.BlockingConnection(pika.ConnectionParameter(
         host='128.199.89.76'))
 channel = connection.channel()
 
