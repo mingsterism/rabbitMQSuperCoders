@@ -20,7 +20,8 @@ channel.basic_publish(exchange='logs',
                       body=message)
 print(" [x] Sent %r" % message)
 connection.close()
-~
-~
-~
+
+
+
+
 

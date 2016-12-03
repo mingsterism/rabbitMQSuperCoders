@@ -8,13 +8,13 @@ q = common.Connector('guest', '192.168.1.10', 5672)
 # parameters = pika.ConnectionParameters('192.168.1.13', 5672, '/', credentials)
 # connection = pika.BlockingConnection(parameters)
 message = json.dumps({'url': 'http://hello.com?1'})
-channel1 = create_channel(q)
+channel1 = common.create_channel(q)
 channel1.basic_publish(exchange='logs', 
 						routing_key='', 
 						body=message)
 print(" [x] Sent %r" % message)
 connection.close()
-						
+
 
 #connection = pika.BlockingConnection(pika.ConnectionParameters(
 #        host='128.199.89.76'))
