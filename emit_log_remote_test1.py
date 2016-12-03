@@ -2,8 +2,13 @@ import pika
 import sys
 import json
 import common
+import configparser
+config = configparser.ConfigParser()
+config.read('profiles.ini')
 
-q = common.Connector('guest', '192.168.1.10', 5672)
+
+q = common.Connector(config['profile1'])
+# q = common.Connector('guest', '192.168.1.10', 5672)
 # credentials = pika.PlainCredentials('guest', 'guest')
 # parameters = pika.ConnectionParameters('192.168.1.13', 5672, '/', credentials)
 # connection = pika.BlockingConnection(parameters)
