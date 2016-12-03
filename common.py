@@ -1,12 +1,20 @@
 import pika
 import configparser
 
-def create_channel(user, exchange, type):
-	credentials = pika.PlainCredentials(user.credentials, user.credentials)
-	parameters = pika.ConnectionParameters(user.ip, user.port, '/', credentials)
+# def create_channel(user, exchange, type):
+# 	credentials = pika.PlainCredentials(user.credentials, user.credentials)
+# 	parameters = pika.ConnectionParameters(user.ip, user.port, '/', credentials)
+# 	connection = pika.BlockingConnection(parameters)
+# 	channel = connection.channel()
+# 	channel.exchange_declare(exchange=exchange, type=type)
+# 	return channel
+
+def create_channel(profile1):
+	credentials = pika.PlainCredentials(profile1['credentials'], profile1['credentials'])
+	parameters = pika.ConnectionParameters(profile1['ip'], profiel1['port'], '/', profile1['credentials'])
 	connection = pika.BlockingConnection(parameters)
 	channel = connection.channel()
-	channel.exchange_declare(exchange=exchange, type=type)
+	channel.exchange_declare(exchange=profile1['exchange'], type=profile1['type'])
 	return channel
 
 # class Connector:
