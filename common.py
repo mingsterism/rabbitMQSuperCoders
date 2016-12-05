@@ -28,3 +28,17 @@ class Connector:
 		self.credentials = profile['credentials']
 		self.ip = profile['ip']
 		self.port = profile['port']
+
+class DB:
+    def __init__(self):
+        self.cnx = mysql.connector.connect(
+            host=db_settings.HOST,
+            user=db_settings.USER, password=db_settings.PASSWORD,
+            database=db_settings.DATABASE)
+
+    def insert_url(self, url):
+        cursor = self.cnx.cursor()
+        cursor.execute(
+            'INSERT INTO crawled_urls (url) VALUES (%s)', (url,))
+        self.cnx.commit()
+        cursor.close()

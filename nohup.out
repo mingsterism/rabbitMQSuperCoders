@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "consumer.py", line 4, in <module>
+    host='128.199.89.76'))
+  File "/usr/local/lib/python3.5/dist-packages/pika/adapters/blocking_connection.py", line 339, in __init__
+    self._process_io_for_connection_setup()
+  File "/usr/local/lib/python3.5/dist-packages/pika/adapters/blocking_connection.py", line 374, in _process_io_for_connection_setup
+    self._open_error_result.is_ready)
+  File "/usr/local/lib/python3.5/dist-packages/pika/adapters/blocking_connection.py", line 395, in _flush_output
+    raise exceptions.ConnectionClosed()
+pika.exceptions.ConnectionClosed
