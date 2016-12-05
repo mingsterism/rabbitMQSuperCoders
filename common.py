@@ -1,5 +1,6 @@
 import pika
 import configparser
+import psycopg2
 
 # def create_channel(user, exchange, type):
 # 	credentials = pika.PlainCredentials(user.credentials, user.credentials)
@@ -29,7 +30,7 @@ class Connector:
 		self.ip = profile['ip']
 		self.port = profile['port']
 
-class DB:
+class MYSQL_DB:
     def __init__(self):
         self.cnx = mysql.connector.connect(
             host=db_settings.HOST,
@@ -42,3 +43,24 @@ class DB:
             'INSERT INTO crawled_urls (url) VALUES (%s)', (url,))
         self.cnx.commit()
         cursor.close()
+
+class PSQL_DB:
+    def __init__(self, db):
+        self.conn = psycopg2.connect("dbname=" + db['dbname'] + " user=" + db['user'] + " host=" + db['host'] + " port=" + \
+            db['port'])
+        self.cur = self.conn.cursor()
+
+    def create_table(self, table):
+        self.cur.execute("CREATE TABLE IF NOT EXISTS " + table + " (id serial PRIMARY KEY, url TEXT);") 
+
+    def insert_data(self, url, table):
+        self.cur.execute("INSERT INTO " + table + " (url) VALUES ('" + url + "')")
+
+    def closeDB(self):
+        self.conn.commit()
+        self.cur.close()
+        self.conn.close()
+
+
+
+
