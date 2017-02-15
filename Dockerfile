@@ -7,7 +7,9 @@ RUN echo 'Installing essential libraries now...'
 RUN apt-get -y install \
 	python3	\
 	python3-pip \
-	libpq-dev 
+	libpq-dev \
+	wget \
+	git
 RUN pip3 install psycopg2
 
 RUN echo 'deb http://www.rabbitmq.com/debian/ testing main' | \
@@ -16,5 +18,7 @@ RUN wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | \
         sudo apt-key add -
 RUN apt-get -y update && apt-get -y install rabbitmq-server
 
+# Copying base config files for rabbitmq. Allow guests to receive from remote users
+COPY rabbitmqConfig/rabbitmq.config /etc/rabbitmq/rabbitmq.config
 EXPOSE 5432 8001 8002 80
 
