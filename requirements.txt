@@ -1,5 +1,4 @@
 pika>=0.10.0
 mysql-connector>=2.1.0
-libpq-dev
 psycopg2
 

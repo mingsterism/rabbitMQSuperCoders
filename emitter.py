@@ -15,9 +15,7 @@ q = common.Connector(config['profile1'])
 message = json.dumps({'url': 'http://hello.com?1'})
 # channel1 = common.create_channel(q, 'logs', 'fanout')
 channel1 = common.create_channel(config['profile1'])
-channel1.basic_publish(exchange='logs', 
-						routing_key='', 
-						body=message)
+channel1.basic_publish(exchange='logs', routing_key='', body=message)
 print(" [x] Sent %r" % message)
 channel1.close()
 
