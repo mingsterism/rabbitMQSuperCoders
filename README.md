@@ -7,5 +7,5 @@ todo
 - auto expose ports to allow data stream 
 
 ### Run
-docker build -t rabbitServer1 .
-docker run -it --name rabbitContainer1 <br> --network=testnetwork rabbitServer1 
+docker build -t rabbitServer1 . <br>
+docker run -it --name rabbitContainer1 --network=testnetwork rabbitServer1 
