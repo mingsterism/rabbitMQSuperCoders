@@ -1,7 +1,7 @@
 import pika
-
+creds = pika.credentials.PlainCredentials('guest', 'guest')
 connection = pika.BlockingConnection(pika.ConnectionParameters(
-        host='128.199.89.76'))
+        host='localhost', port=5672, credentials=creds))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs',

@@ -19,6 +19,13 @@ RUN wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | \
 RUN apt-get -y update && apt-get -y install rabbitmq-server
 
 # Copying base config files for rabbitmq. Allow guests to receive from remote users
+RUN git clone https://github.com/mingsterism/rabbitMQSuperCoders /home/rabbitMQ
 COPY rabbitmqConfig/rabbitmq.config /etc/rabbitmq/rabbitmq.config
+RUN rabbitmq-server 
+
+ENV rabbitDir /home/rabbitMQ
+WORKDIR $rabbitDir
+RUN rabbitmqctl status
 EXPOSE 5432 8001 8002 80
+
 
