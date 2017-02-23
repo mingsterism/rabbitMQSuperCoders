@@ -11,14 +11,17 @@ RUN apt-get -y install \
 	wget \
 	git
 RUN pip3 install psycopg2
+RUN pip3 install pika
 
 RUN echo 'deb http://www.rabbitmq.com/debian/ testing main' | \
         sudo tee /etc/apt/sources.list.d/rabbitmq.list
 RUN wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | \
         sudo apt-key add -
 RUN apt-get -y update && apt-get -y install rabbitmq-server
+RUN echo '............ Your docker ip is ...........'
+RUN echo ' user service rabbitmq-server start/stop/reset/status <<<<<<<<<<<<<<<<<<<<<<<<'
 
 # Copying base config files for rabbitmq. Allow guests to receive from remote users
-COPY rabbitmqConfig/rabbitmq.config /etc/rabbitmq/rabbitmq.config
+COPY ./rabbitmqConfig/rabbitmq.config /etc/rabbitmq/rabbitmq.config
 EXPOSE 5432 8001 8002 80
 
